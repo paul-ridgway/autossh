@@ -1,0 +1,25 @@
+Host bob
+    HostName 10.10.10.10
+    Port 22
+    User paul
+    IdentityFile ~/Dropbox/.ssh/floow/id_rsa
+
+Host overlord
+    HostName 10.10.10.10
+    Port 22
+    User paul
+    IdentityFile ~/Dropbox/.ssh/floow/id_rsa
+
+Host monkey
+    HostName monkey
+    Port 22
+    User paul
+    IdentityFile ~/Dropbox/.ssh/floow/id_rsa
+
+Host hp-01
+    Port 22
+    HostName 10.10.11.101
+    User paul
+    IdentityFile ~/Dropbox/.ssh/cluster/id_rsa
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null

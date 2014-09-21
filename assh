@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Re-generate config files
+
+./generate.rb
+
+ssh -F .generated-config $*
