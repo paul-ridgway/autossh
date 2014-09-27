@@ -1,5 +1,3 @@
-require 'pp'
-
 module Assh
 
 	class Command
@@ -7,13 +5,29 @@ module Assh
 		def initialize(argv)
 			@args = argv
 			parse_arguments!
+
+			@configuration = Configuration.new
+			@configuration.load!('config.yml')
+
+			@generator = Generator.new
 		end
 
 		def execute!
 			if @cmd_ls
-				puts 'ls'
+				puts "Host List"
+				@configuration.groups.each do |name, hosts|
+					puts "  #{name}"
+					hosts.each do |name, host|
+						puts "    #{host.to_s}"
+					end
+				end
+			elsif @cmd_generate
+				puts "Generating config in #{@generator.output_file}"
+				generate!
+				puts "Done"
 			else
-				puts 'default'
+				generate!
+				execute_default!
 			end
 		end
 
@@ -23,7 +37,21 @@ module Assh
 			first_arg = @args[0].downcase
 			if first_arg == 'ls'
 				@cmd_ls = true
+			elsif first_arg == 'generate'
+				@cmd_generate = true
 			end
+		end
+
+		def generate!
+			#Generates up-to-date config
+			@generator.run!(@configuration.hosts)
+		end
+
+		def execute_default!
+			# Generates safe args and replaces assh process with ssh call
+			args = @args.map{|x| x.include?(' ') ? "\"#{x}\"" : x}.join(' ')
+			command = "ssh -F #{Assh::GENERATED_CONFIG} #{args}"
+			exec(command)
 		end
 
 	end

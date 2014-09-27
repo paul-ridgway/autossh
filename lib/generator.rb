@@ -2,13 +2,17 @@
 module Assh
 	class Generator
 
-		def run!(output_file = '.generated-config')
-			File.open(output_file, 'w') do |f|
-				f << "Host test\n"
-				f << "  Hostname 10.11.12.13\n"
-			    f << "  Port 2219\n"
-			    f << "  User paul\n"
-			    f << "  IdentityFile ~/Dropbox/.ssh/floow/id_rsa"
+		attr_accessor :output_file
+
+		def initialize(output_file = File.expand_path(Assh::GENERATED_CONFIG))
+			@output_file = output_file
+		end
+
+		def run!(hosts)
+			File.open(@output_file, 'w') do |f|
+				hosts.each do |_, host|
+					f << host.to_ssh_config
+				end
 			end
 		end
 
