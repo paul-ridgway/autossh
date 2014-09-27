@@ -1,7 +1,18 @@
 #!/bin/bash
 
-# Re-generate config files
+#Ensure working directory regardless of symlinks
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  TARGET="$(readlink "$SOURCE")"
+  if [[ $SOURCE == /* ]]; then
 
-./generate.rb
+    SOURCE="$TARGET"
+  else
+    DIR="$( dirname "$SOURCE" )"
+    SOURCE="$DIR/$TARGET" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  fi
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+cd $DIR
 
-ssh -F .generated-config $*
+./assh.rb "$@"
