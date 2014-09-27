@@ -6,7 +6,7 @@ module Assh
 			@args = argv
 			parse_arguments!
 
-			@configuration = Configuration.new
+			@configuration = FileProvider.new
 			@configuration.load!('config.yml')
 
 			@generator = Generator.new

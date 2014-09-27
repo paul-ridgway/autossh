@@ -1,9 +1,9 @@
+require_relative '../provider'
 require 'yaml'
-require 'pp'
 
 module Assh
 
-	class Configuration
+	class FileProvider < Provider
 
 		ROOT = File.expand_path('~/.autossh')
 
@@ -12,13 +12,6 @@ module Assh
 		HOSTS_KEY	 = "Hosts"
 		GROUP_KEY	 = "Group"
 		GROUPS_KEY	 = "Groups"
-
-		attr_accessor :hosts, :groups
-
-		def initialize
-			@hosts = {}
-			@groups = {}
-		end
 
 		def load!(file)
 			parse_config!(YAML::load_file(File.expand_path(file, ROOT)))
@@ -60,13 +53,10 @@ module Assh
 			return unless host
 			parent_config ||= {}
 			name = host[HOST_KEY]
-			puts "WARNING: Duplicate host named: #{name}. Only latest host is included" if hosts[name]
 
 			host = Host.new(parent_config.merge(host))
 
-			@groups[group_name] = {} unless @groups.has_key?(group_name)
-			@groups[group_name][name] = host
-			hosts[name] = host
+			add_host(group_name, name, host)
 		end
 
 	end

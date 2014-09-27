@@ -1,13 +1,15 @@
+require_relative 'providers/file_provider'
+
 module Assh
 
 	class Host
 
 		PORT_KEY		= "Port"
-		HOST_KEY		= Assh::Configuration::HOST_KEY	
+		HOST_KEY		= Assh::FileProvider::HOST_KEY	
 		HOSTNAME_KEY 	= "HostName"
-		HOSTS_KEY		= Assh::Configuration::HOSTS_KEY	
-		GROUP_KEY		= Assh::Configuration::GROUP_KEY	
-		GROUPS_KEY		= Assh::Configuration::GROUPS_KEY	
+		HOSTS_KEY		= Assh::FileProvider::HOSTS_KEY	
+		GROUP_KEY		= Assh::FileProvider::GROUP_KEY	
+		GROUPS_KEY		= Assh::FileProvider::GROUPS_KEY	
 
 
 		attr_accessor :name, :hostname, :port
