@@ -20,6 +20,10 @@ module Assh
 			@params = params
 		end
 
+		def address
+			"#{hostname}:#{port}"
+		end
+
 		def to_s
 			"#{name} - #{hostname}:#{port}"
 		end

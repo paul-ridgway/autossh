@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'colorize'
+
 require_relative 'command'
 require_relative 'generator'
 require_relative 'configuration'

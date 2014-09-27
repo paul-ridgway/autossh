@@ -14,11 +14,11 @@ module Assh
 
 		def execute!
 			if @cmd_ls
-				puts "Host List"
+				puts "Host List".green
 				@configuration.groups.each do |name, hosts|
-					puts "  #{name}"
+					puts "  #{name.yellow}"
 					hosts.each do |name, host|
-						puts "    #{host.to_s}"
+						puts "    #{host.name.light_white} #{"-".green} #{host.address.cyan}"
 					end
 				end
 			elsif @cmd_generate
