@@ -1,0 +1,28 @@
+---
+
+Includes: [example_include.yml, example_aws.yml, random.yml]
+
+Port: 22
+IdentityFile: ~/.ssh/id_rsa
+
+Groups: 
+
+      - Group: Home
+        Port: 22
+        User: other
+        Hosts:
+             - Host: nas
+               HostName: 192.168.1.1
+
+      - Group: Personal
+        Port: 22
+        User: me
+        Hosts:
+             - Host: a1-vm
+               HostName: 1a-vm.example.com
+             - Host: 2b-vm
+               HostName: 2b-vm.example.com
+             - Host: 3c-vm
+               HostName: 3c-vm.example.com
+             - Host: 4d
+               HostName: 4d.example.com

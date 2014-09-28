@@ -1,0 +1,6 @@
+---
+
+Provider: aws
+
+AccessKeyId: someKey
+SecretAccessKey: someSecret

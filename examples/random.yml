@@ -1,0 +1,11 @@
+---
+
+Provider: Random
+
+Groups: 
+      - Group: Test
+        User: paul
+        IdentityFile: ~/Dropbox/.ssh/floow/id_rsa
+        Hosts:
+             - Host: test
+               HostName: 10.10.10.9

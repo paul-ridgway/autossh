@@ -1,0 +1,43 @@
+---
+
+Groups: 
+      - Group: Blade Custer
+        Port: 2212
+        User: bladeuser
+        IdentityFile: ~/.ssh/blade_key
+        StrictHostKeyChecking: no
+        UserKnownHostsFile: /dev/null
+        LogLevel: quiet
+        Hosts:
+             - Host: node-01
+               HostName: 10.10.11.101
+             - Host: node-02
+               HostName: 10.10.11.102
+             - Host: node-03
+               HostName: 10.10.11.103
+             - Host: node-04
+               HostName: 10.10.11.104
+             - Host: node-05
+               HostName: 10.10.11.105
+             - Host: node-06
+               HostName: 10.10.11.106
+             - Host: node-07
+               HostName: 10.10.11.107
+             - Host: node-08
+               HostName: 10.10.11.108
+             - Host: node-09
+               HostName: 10.10.11.109
+             - Host: node-10
+               HostName: 10.10.11.110
+             - Host: node-11
+               HostName: 10.10.11.111
+             - Host: node-12
+               HostName: 10.10.11.112
+             - Host: node-13
+               HostName: 10.10.11.113
+             - Host: node-14
+               HostName: 10.10.11.114
+             - Host: node-15
+               HostName: 10.10.11.115
+             - Host: node-16
+               HostName: 10.10.11.116
