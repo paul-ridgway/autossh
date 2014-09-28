@@ -13,24 +13,13 @@ module Assh
 		GROUP_KEY	 = "Group"
 		GROUPS_KEY	 = "Groups"
 
-		def load!(file)
-			parse_config!(YAML::load_file(File.expand_path(file, ROOT)))
-		end
+    def initialize(configuration)
+      super(configuration)
+    end
 
-		private
 		def parse_config!(config)
 			return unless config
 			raise 'Unexpected config type' unless config.is_a? Hash
-			includes = config.delete(INCLUDES_KEY)
-			includes.each do |inc|
-				config.merge!(YAML::load_file(File.expand_path(inc, ROOT))) do |key, old_value, new_value|
-					if old_value.is_a? Array
-						old_value + new_value
-					else
-						new_value
-					end
-				end
-			end
 
 			groups = config.delete(GROUPS_KEY)
 
@@ -41,6 +30,7 @@ module Assh
 			groups.each { |g| parse_group!(config, g) }
 		end
 
+		private
 		def parse_group!(parent_config, group)
 			return unless group
 			parent_config ||= {}
@@ -54,11 +44,11 @@ module Assh
 			parent_config ||= {}
 			name = host[HOST_KEY]
 
-			host = Host.new(parent_config.merge(host))
-
-			add_host(group_name, name, host)
+			add_host(group_name, name, Host.new(parent_config.merge(host)))
 		end
 
 	end
 
 end
+
+Assh::Provider.register_provider!("file", Assh::FileProvider)

@@ -2,6 +2,11 @@
 module Assh
 
 	class AwsProvider < Assh::Provider
-	end
+
+    def initialize(configuration)
+      super(configuration)
+    end
+
+  end
 
 end
