@@ -16,10 +16,18 @@ module Assh
     def execute!
       if @cmd_ls
         puts "Host List".green
+        max_name = 0
+        @configuration.groups.each do |name, hosts|
+          hosts.each do |name, host|
+            max_name = name.size if name.size > max_name
+          end
+        end
         @configuration.groups.each do |name, hosts|
           puts "  #{name.yellow}"
+          hosts = Hash[hosts.sort]
           hosts.each do |name, host|
-            puts "    #{name.light_white} #{"-".green} #{host.address.cyan}"
+            padded_name = name + (" " * (max_name - name.size))
+            puts "    #{padded_name.light_white} #{"-".green} #{host.address.cyan}"
           end
         end
       elsif @cmd_generate
