@@ -14,3 +14,5 @@ To do
 1. Example configurations
 
 2. Safely handle no config (make dir, etc)
+
+3. Validate config files
