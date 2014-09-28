@@ -18,3 +18,5 @@ To do
 3. Validate config files
 
 4. Gemify?
+
+5. Command line override config path (to test examples, and other uses)
