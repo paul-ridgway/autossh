@@ -16,3 +16,5 @@ To do
 2. Safely handle no config (make dir, etc)
 
 3. Validate config files
+
+4. Gemify?
