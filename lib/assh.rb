@@ -16,6 +16,7 @@ module Assh
   ROOT = File.expand_path('~/.autossh')
 
   GENERATED_CONFIG = '.generated-config'
+  GENERATED_AT = '.generated-at'
 
 	VERSION = '2014.9.27.1.alpha'
 
