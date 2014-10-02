@@ -18,6 +18,22 @@ module Assh
       @hosts[host_name] = host
     end
 
+    #TODO: Move generated-at to here and call config-cached-at
+
+    def save_cache!(file = File.expand_path(Assh::CONFIG_CACHE))
+      cache = {
+          hosts: @hosts,
+          groups: @groups
+      }
+      File.open(file, 'w') {|f| f.write cache.to_yaml }
+    end
+
+    def load_cache!(file = File.expand_path(Assh::CONFIG_CACHE))
+      cache = YAML::load_file(file)
+      @hosts = cache[:hosts]
+      @groups = cache[:groups]
+    end
+
   end
 
 end

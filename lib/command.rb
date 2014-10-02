@@ -13,9 +13,10 @@ module Assh
       puts @generator.needs_generating?
 
       if @generator.needs_generating?
-
         Provider.load_configuration!(@configuration, 'config.yml')
-
+        @configuration.save_cache!
+      else
+        @configuration.load_cache!
       end
 
     end
