@@ -20,3 +20,5 @@ To do
 4. Gemify?
 
 5. Command line override config path (to test examples, and other uses)
+
+6. Decent logger/log levels, etc
