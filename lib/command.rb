@@ -8,9 +8,16 @@ module Assh
 
       @configuration = Configuration.new
 
-      Provider.load_configuration!(@configuration, 'config.yml')
-
       @generator = Generator.new
+
+      puts @generator.needs_generating?
+
+      if @generator.needs_generating?
+
+        Provider.load_configuration!(@configuration, 'config.yml')
+
+      end
+
     end
 
     def execute!
