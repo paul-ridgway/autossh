@@ -17,7 +17,7 @@ module Assh
 				end
       end
       File.open(@timestamp_file, 'w') do |f|
-        f << Time.now
+        f << Time.now.to_i
       end
 		end
 

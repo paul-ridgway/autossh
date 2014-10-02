@@ -12,6 +12,8 @@ module Assh
       return unless config
       raise 'Unexpected config type' unless config.is_a? Hash
 
+      name_match = config['NameMatch']
+
       AWS.config(
           access_key_id: config['AccessKeyId'],
           secret_access_key: config['SecretAccessKey'])
@@ -34,6 +36,14 @@ module Assh
         end
 
         hosts.each do |name, ip|
+
+          if name_match
+            m = Regexp.new(name_match).match(name)
+            if m
+              name = m.captures[0]
+            end
+          end
+
           add_host(region, name, Host.new({'Host' => name, 'HostName' => ip}))
         end
 
