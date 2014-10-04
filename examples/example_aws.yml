@@ -2,5 +2,7 @@
 
 Provider: aws
 
+NameMatch: (.*?\..*?)\.
+
 AccessKeyId: someKey
 SecretAccessKey: someSecret
