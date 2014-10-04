@@ -12,7 +12,7 @@ module Assh
 
       puts @generator.needs_generating?
 
-      if @generator.needs_generating?
+      if @generator.needs_generating? || @cmd_generate
         Provider.load_configuration!(@configuration, 'config.yml')
         @configuration.save_cache!
       else
