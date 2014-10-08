@@ -10,7 +10,7 @@ module Assh
 
       @generator = Generator.new
 
-      puts @generator.needs_generating?
+      Provider.verbose! if @cmd_generate
 
       if @generator.needs_generating? || @cmd_generate
         Provider.load_configuration!(@configuration, 'config.yml')

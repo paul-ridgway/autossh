@@ -2,6 +2,8 @@ module Assh
 
   class Provider
 
+    @@verbose = false
+
     @@providers ||= {}
 
     def initialize(configuration)
@@ -9,6 +11,8 @@ module Assh
     end
 
     def self.load_configuration!(configuration, file)
+      status "Loading: #{file}"
+
       config = YAML::load_file(File.expand_path(file, Assh::ROOT))
 
       includes = config.delete(Assh::FileProvider::INCLUDES_KEY) || []
@@ -27,16 +31,29 @@ module Assh
       provider
     end
 
-    def self.register_provider!(name, clazz)
-      @@providers[name] = clazz
-    end
-
     def parse_config!(config)
       raise 'parse_config! must be overridden'
     end
 
     def add_host(group_name, host_name, host)
       @configuration.add_host(group_name, host_name, host)
+    end
+
+    def self.status(message = "", inline = false)
+      return unless @@verbose
+      if inline
+        print message
+      else
+        puts message
+      end
+    end
+
+    def self.verbose!
+      @@verbose = true
+    end
+
+    def self.register_provider!(name, clazz)
+      @@providers[name] = clazz
     end
 
   end

@@ -10,9 +10,6 @@ module Assh
     end
 
     def needs_generating?
-      puts current_time
-      puts generated_at
-      puts current_time-generated_at
       (current_time - generated_at) > 300
     end
 
