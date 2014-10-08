@@ -13,6 +13,7 @@ module Assh
       Provider.verbose! if @cmd_generate
 
       if @configuration.needs_generating? || @cmd_generate
+        puts "Refreshing..."
         Provider.load_configuration!(@configuration, 'config.yml')
         @configuration.save_cache!
       else
@@ -23,7 +24,7 @@ module Assh
 
     def execute!
       if @cmd_ls
-        puts "Host List".green
+        puts "Host List (cached at #{Time.at(@configuration.generated_at)})".green
         max_name = 0
         @configuration.groups.each do |name, hosts|
           hosts.each do |name, host|

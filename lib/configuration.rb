@@ -40,12 +40,12 @@ module Assh
       (current_time - generated_at(timestamp_file)) > 300
     end
 
-    private
     def generated_at(timestamp_file = File.expand_path(Assh::CONFIG_CACHE_AT))
       return File.read(timestamp_file).to_i if File.exists?(timestamp_file)
       0
     end
 
+    private
     def current_time
       Time.now.to_i
     end
