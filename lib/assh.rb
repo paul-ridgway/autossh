@@ -17,7 +17,7 @@ module Assh
 
   GENERATED_CONFIG = '.assh-generated-config'
   CONFIG_CACHE = '.assh-config-cache'
-  GENERATED_AT = '.assh-generated-at'
+  CONFIG_CACHE_AT = '.assh-config-cached-at'
 
 	VERSION = '2014.9.27.1.alpha'
 

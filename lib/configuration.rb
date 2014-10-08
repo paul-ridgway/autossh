@@ -1,4 +1,3 @@
-
 module Assh
 
   class Configuration
@@ -20,18 +19,35 @@ module Assh
 
     #TODO: Move generated-at to here and call config-cached-at
 
-    def save_cache!(file = File.expand_path(Assh::CONFIG_CACHE))
+    def save_cache!(config_file = File.expand_path(Assh::CONFIG_CACHE),
+                    timestamp_file = File.expand_path(Assh::CONFIG_CACHE_AT))
       cache = {
           hosts: @hosts,
           groups: @groups
       }
-      File.open(file, 'w') {|f| f.write cache.to_yaml }
+      File.open(config_file, 'w') { |f| f << cache.to_yaml }
+      File.open(timestamp_file, 'w') { |f| f << current_time }
+
     end
 
-    def load_cache!(file = File.expand_path(Assh::CONFIG_CACHE))
-      cache = YAML::load_file(file)
+    def load_cache!(config_file = File.expand_path(Assh::CONFIG_CACHE))
+      cache = YAML::load_file(config_file)
       @hosts = cache[:hosts]
       @groups = cache[:groups]
+    end
+
+    def needs_generating?(timestamp_file = File.expand_path(Assh::CONFIG_CACHE_AT))
+      (current_time - generated_at(timestamp_file)) > 300
+    end
+
+    private
+    def generated_at(timestamp_file = File.expand_path(Assh::CONFIG_CACHE_AT))
+      return File.read(timestamp_file).to_i if File.exists?(timestamp_file)
+      0
+    end
+
+    def current_time
+      Time.now.to_i
     end
 
   end
