@@ -37,7 +37,7 @@ module Assh
     end
 
     def needs_generating?(timestamp_file = File.expand_path(Assh::CONFIG_CACHE_AT))
-      (current_time - generated_at(timestamp_file)) > 300
+      (current_time - generated_at(timestamp_file)) > 72000
     end
 
     def generated_at(timestamp_file = File.expand_path(Assh::CONFIG_CACHE_AT))
