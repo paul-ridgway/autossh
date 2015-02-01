@@ -6,6 +6,10 @@ Gem::Specification.new do |s|
   s.description = "An SSH connection helper"
   s.authors     = ["Paul Ridgway"]
   s.email       = 'myself@paulridgway.co.uk'
-  s.files       = ["lib/autossh.rb"]
   s.homepage    = 'https://github.com/paul-ridgway/autossh'
+
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- test/*`.split("\n")
+
+  s.executables << 'assh'
 end
