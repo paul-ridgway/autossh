@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'autossh'
+
+Assh::Command.new(ARGV).execute!

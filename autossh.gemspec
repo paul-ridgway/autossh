@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'autossh'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2015-02-01'
   s.summary     = "AutoSSH"
   s.description = "An SSH connection helper"
