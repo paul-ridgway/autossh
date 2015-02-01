@@ -1,3 +1,7 @@
+Available on Rubygems at https://rubygems.org/gems/autossh
+
+Github repository at https://github.com/paul-ridgway/autossh
+
 To Install
 ==========
 
@@ -22,3 +26,5 @@ To do
 5. Command line override config path (to test examples, and other uses)
 
 6. Decent logger/log levels, etc
+
+7. Tests
