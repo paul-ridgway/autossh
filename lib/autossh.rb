@@ -15,10 +15,10 @@ module Assh
 
   ROOT = File.expand_path('~/.autossh')
 
-  GENERATED_CONFIG = '.assh-generated-config'
-  CONFIG_CACHE = '.assh-config-cache'
-  CONFIG_CACHE_AT = '.assh-config-cached-at'
+  GENERATED_CONFIG = "#{ROOT}/.assh-generated-config"
+  CONFIG_CACHE     = "#{ROOT}/.assh-config-cache"
+  CONFIG_CACHE_AT  = "#{ROOT}/.assh-config-cached-at"
 
-	VERSION = '2014.9.27.1.alpha'
+  VERSION = '0.0.3'
 
 end
