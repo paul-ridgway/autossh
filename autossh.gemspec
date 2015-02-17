@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'autossh'
-  s.version     = '0.0.4'
-  s.date        = '2015-02-01'
+  s.version     = '0.0.7'
+  s.date        = '2015-02-17'
   s.summary     = "AutoSSH"
   s.description = "An SSH connection helper"
   s.authors     = ["Paul Ridgway"]
@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
 
 
   s.add_dependency("colorize", '~> 0')
-  s.add_dependency("aws-sdk", '~> 0')
+  s.add_dependency("aws-sdk-v1", '~> 0')
 
 end
